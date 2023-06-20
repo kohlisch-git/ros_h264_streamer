@@ -30,13 +30,13 @@ public:
     m_stride = 3*m_width;
 
     /* For YUV420P -> BGR8 conversion */
-    m_convert_ctx = sws_getContext(m_width, m_height, PIX_FMT_YUV420P, m_width, m_height, PIX_FMT_BGR24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+    m_convert_ctx = sws_getContext(m_width, m_height, AV_PIX_FMT_YUV420P, m_width, m_height, AV_PIX_FMT_BGR24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
 
     av_init_packet(&avpkt);
 
     /* Find H264 codec */
     avcodec_register_all();
-    codec = avcodec_find_decoder(CODEC_ID_H264);
+    codec = avcodec_find_decoder(AV_CODEC_ID_H264);
     if(!codec)
     {
         std::cerr << "[ros_h264_streamer] H264Decoder cannot find H.264 codec in ffmpeg" << std::endl;
@@ -44,7 +44,7 @@ public:
     }
 
     c = avcodec_alloc_context3(codec);
-    picture = avcodec_alloc_frame();
+    picture = av_frame_alloc();
     c->width  = m_width;
     c->height = m_height;
 

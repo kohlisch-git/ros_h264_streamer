@@ -112,21 +112,21 @@ private:
     x264_picture_alloc(&m_pic_in, X264_CSP_I420, m_width, m_height);
     if(encoding == sensor_msgs::image_encodings::RGB8)
     {
-      m_convert_ctx = sws_getContext(m_width, m_height, PIX_FMT_RGB24, m_width, m_height, PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+      m_convert_ctx = sws_getContext(m_width, m_height, AV_PIX_FMT_RGB24, m_width, m_height, AV_PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     }
     else if(encoding == sensor_msgs::image_encodings::BGR8)
     {
-      m_convert_ctx = sws_getContext(m_width, m_height, PIX_FMT_BGR24, m_width, m_height, PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+      m_convert_ctx = sws_getContext(m_width, m_height, AV_PIX_FMT_BGR24, m_width, m_height, AV_PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     }
     else if(encoding == sensor_msgs::image_encodings::RGBA8)
     {
       m_stride = m_width*4;
-      m_convert_ctx = sws_getContext(m_width, m_height, PIX_FMT_RGBA, m_width, m_height, PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+      m_convert_ctx = sws_getContext(m_width, m_height, AV_PIX_FMT_RGBA, m_width, m_height, AV_PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     }
     else if(encoding == sensor_msgs::image_encodings::BGRA8)
     {
       m_stride = m_width*4;
-      m_convert_ctx = sws_getContext(m_width, m_height, PIX_FMT_BGRA, m_width, m_height, PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+      m_convert_ctx = sws_getContext(m_width, m_height, AV_PIX_FMT_BGRA, m_width, m_height, AV_PIX_FMT_YUV420P, SWS_FAST_BILINEAR, NULL, NULL, NULL);
     }
     else
     {

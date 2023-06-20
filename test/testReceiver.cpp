@@ -4,6 +4,9 @@
 namespace po = boost::program_options;
 #include <iomanip>
 
+void handler(int signal);
+
+
 int main(int argc, char * argv[])
 {
   #ifndef WIN32

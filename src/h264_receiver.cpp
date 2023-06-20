@@ -96,7 +96,7 @@ struct H264ReceiverNetImpl
 
   void IOServiceThread()
   {
-      while(!stop_io_service)
+      while(!stop_io_service && ros::ok())
       {
           io_service.run();
           io_service.reset();
